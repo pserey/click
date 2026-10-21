@@ -11,6 +11,13 @@ import click.utils
 from click._compat import WIN
 
 
+def test_make_default_short_help_respects_max_length():
+    result = click.utils.make_default_short_help("1234 67890 xxxxxx", 10)
+
+    assert result == "1234..."
+    assert len(result) <= 10
+
+
 def test_echo(runner):
     with runner.isolation() as outstreams:
         click.echo("\N{SNOWMAN}")

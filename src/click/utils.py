@@ -60,17 +60,25 @@ def make_default_short_help(help, max_length=45):
     if words[0] == "\b":
         words = words[1:]
 
-    for word in words:
-        if word[-1:] == ".":
-            done = True
+    for i, word in enumerate(words):
         new_length = 1 + len(word) if result else len(word)
+
         if total_length + new_length > max_length:
+            result.append("...")
+            done = True
+        elif (
+            word[-1:] != "."
+            and i < len(words) - 1
+            and total_length + new_length + 3 > max_length
+        ):
             result.append("...")
             done = True
         else:
             if result:
                 result.append(" ")
             result.append(word)
+            if word[-1:] == ".":
+                done = True
         if done:
             break
         total_length += new_length
