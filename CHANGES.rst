@@ -5,6 +5,8 @@ Version 8.0
 
 Unreleased
 
+-   Automatic short help generation respects the configured length limit.
+    :issue:`1`
 -   Drop support for Python 2 and 3.5.
 -   Colorama is always installed on Windows in order to provide style
     and color support. :pr:`1784`
